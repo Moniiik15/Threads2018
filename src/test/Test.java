@@ -6,6 +6,9 @@ package test;
 
 import java.util.Scanner;
 
+import javax.swing.JTextArea;
+
+import gui.MainWindow;
 import music.Performance;
 import music.Singer;
 import music.Synchronizer;
@@ -13,18 +16,17 @@ import music.Voice;
 
 public class Test {
 
-    public static final Scanner IN = new Scanner(System.in);
-    
     private Singer pattiSmith;
     private Singer bruceSpringsteen;
     private Singer choir;
     
-    private void initializeSingingInThreads() {
+    public void initializeSingingInThreads() {
         String lyrics1 = "Because the night";
         String lyrics2 = "Belongs to lovers";
         String lyrics3= "Because the night belongs to lust";
         boolean stopIt = false;
-        Synchronizer synch = new Synchronizer(true);
+        
+        Synchronizer synch = new Synchronizer(true, MainWindow.getTextArea());
         
         Performance firstVoicePerformance = new Performance(lyrics1, 1500);
         Performance secondVoicePerformance = new Performance(lyrics2, 1500);
@@ -34,20 +36,21 @@ public class Test {
         choir = new Singer("Choir", Voice.BACKGROUND, choirPerformance, stopIt, synch);
     }
     
-    public void testSingInThreads() {
-        
-        initializeSingingInThreads();
-        
-        pattiSmith.start();
-        bruceSpringsteen.start();
-        choir.start();
-        IN.nextLine();
-        pattiSmith.setStopIt(true);
-        bruceSpringsteen.setStopIt(true);
-        choir.setStopIt(true);
-        
+
+    public void startThreads() {
+    	 pattiSmith.start();
+         bruceSpringsteen.start();
+         choir.start();
+    	
     }
     
+    public void stopThreads() {
+    	 pattiSmith.setStopIt(true);
+         bruceSpringsteen.setStopIt(true);
+         choir.setStopIt(true);
+         
+    	
+    }
     public void simpleDelay() {
         long l1 = System.currentTimeMillis();
         System.out.println("Wait 2sec...");

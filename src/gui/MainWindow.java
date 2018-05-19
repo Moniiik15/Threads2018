@@ -7,18 +7,23 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import test.Test;
+
 import java.awt.Toolkit;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
-	private JTextArea textArea;
+	private static JTextArea textArea;
 	private JPanel panel;
 	private JPanel panel_1;
 	private JButton btnStartIndividual;
@@ -59,7 +64,11 @@ public class MainWindow extends JFrame {
 		contentPane.add(getPanel(), BorderLayout.WEST);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
 	}
-
+	
+	
+	Test t=new Test();
+	
+	
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -67,7 +76,8 @@ public class MainWindow extends JFrame {
 		}
 		return scrollPane;
 	}
-	private JTextArea getTextArea() {
+	
+	public static JTextArea getTextArea() {
 		if (textArea == null) {
 			textArea = new JTextArea();
 		}
@@ -103,6 +113,12 @@ public class MainWindow extends JFrame {
 	private JButton getBtnStart() {
 		if (btnStart == null) {
 			btnStart = new JButton("");
+			btnStart.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					t.initializeSingingInThreads();
+					t.startThreads();
+				}
+			});
 			btnStart.setBounds(18, 5, 63, 39);
 			
 			ImageIcon icon = new ImageIcon(MainWindow.class.getResource("/image/play.png"));
@@ -119,6 +135,11 @@ public class MainWindow extends JFrame {
 	private JButton getBtnStop() {
 		if (btnStop == null) {
 			btnStop = new JButton("");
+			btnStop.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					t.stopThreads();
+				}
+			});
 			btnStop.setBounds(18, 60, 63, 39);
 			ImageIcon icon = new ImageIcon(MainWindow.class.getResource("/image/stop.png"));
 			Image img = icon.getImage() ;  
@@ -132,6 +153,11 @@ public class MainWindow extends JFrame {
 	private JButton getBtnClear() {
 		if (btnClear == null) {
 			btnClear = new JButton("");
+			btnClear.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					textArea.setText(null);
+				}
+			});
 			btnClear.setBounds(18, 139, 63, 39);
 			ImageIcon icon = new ImageIcon(MainWindow.class.getResource("/image/clear.png"));
 			Image img = icon.getImage() ;  

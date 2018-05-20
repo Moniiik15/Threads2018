@@ -24,9 +24,9 @@ public class Test {
     private Synchronizer synch;
     
     public void initializeSingingInThreads() {
-        String lyrics1 = "Because the night";
-        String lyrics2 = "Belongs to lovers";
-        String lyrics3= "Because the night belongs to lust";
+        String lyrics1 = "Patti: Because the night";
+        String lyrics2 = "Bruce: Belongs to lovers";
+        String lyrics3= "Choir: Because the night belongs to lust";
         boolean stopIt = false;
         
         synch = new Synchronizer(true,false,false, null,false, false, false, false);

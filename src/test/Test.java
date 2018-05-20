@@ -9,6 +9,7 @@ import java.util.Scanner;
 import javax.swing.JTextArea;
 
 import gui.MainWindow;
+import gui.playIndividual;
 import music.Performance;
 import music.Singer;
 import music.Synchronizer;
@@ -20,13 +21,15 @@ public class Test {
     private Singer bruceSpringsteen;
     private Singer choir;
     
+    private Synchronizer synch;
+    
     public void initializeSingingInThreads() {
         String lyrics1 = "Because the night";
         String lyrics2 = "Belongs to lovers";
         String lyrics3= "Because the night belongs to lust";
         boolean stopIt = false;
         
-        Synchronizer synch = new Synchronizer(true, MainWindow.getTextArea());
+        synch = new Synchronizer(true,false, null,false, false, false, false);
         
         Performance firstVoicePerformance = new Performance(lyrics1, 1500);
         Performance secondVoicePerformance = new Performance(lyrics2, 1500);
@@ -38,6 +41,7 @@ public class Test {
     
 
     public void startThreads() {
+    	synch.setTextArea(MainWindow.getTextArea());
     	 pattiSmith.start();
          bruceSpringsteen.start();
          choir.start();
@@ -51,6 +55,59 @@ public class Test {
          
     	
     }
+    
+    public void startNewWindow() {
+    	synch.setOpenIndividual(true);
+    	synch.setTextArea(playIndividual.getTextArea());
+    	
+    }
+	public void startPatti() {
+		synch.setFirstVoiceFlag(true);
+		synch.setPatti(true);
+		pattiSmith.start();
+		
+		
+	}
+	
+	public void stopPatti() {
+		pattiSmith.setStopIt(true);
+		synch.setPatti(false);
+		//synch.setFirstVoiceFlag(false);
+		
+		
+	}
+	
+	public void startBruce() {
+		synch.setFirstVoiceFlag(false);
+		synch.setSecondVoiceFlag(true);
+		synch.setBruce(true);
+		bruceSpringsteen.start();
+		
+	}
+	
+	public void stopBruce() {
+		synch.setBruce(false);
+		bruceSpringsteen.setStopIt(true);
+		
+	}
+	
+	public void startChoir() {
+		synch.setFirstVoiceFlag(false);
+		synch.setSecondVoiceFlag(false);
+		synch.setChoir(true);
+		choir.start();
+		
+	}
+	public void stopChoir() {
+		
+			synch.setFirstVoiceFlag(true);
+		
+		//if(synch.isBruce()) {
+		//	synch.setSecondVoiceFlag(true);
+		
+		choir.setStopIt(true);
+		
+	}
     public void simpleDelay() {
         long l1 = System.currentTimeMillis();
         System.out.println("Wait 2sec...");
@@ -97,6 +154,8 @@ public class Test {
         }
         w2.start();
     }
+
+
     
 }
 

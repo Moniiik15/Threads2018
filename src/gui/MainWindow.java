@@ -55,7 +55,7 @@ public class MainWindow extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/image/nota.jpg")));
 		setTitle("Threads");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 499, 419);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -106,6 +106,14 @@ public class MainWindow extends JFrame {
 	private JButton getBtnStartIndividual() {
 		if (btnStartIndividual == null) {
 			btnStartIndividual = new JButton("Start individual threads");
+			btnStartIndividual.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					showIndividual();
+				
+				}
+
+				
+			});
 		}
 		return btnStartIndividual;
 	}
@@ -167,5 +175,14 @@ public class MainWindow extends JFrame {
 		
 		}
 		return btnClear;
+	}
+	
+	
+	private void showIndividual() {
+		playIndividual pi=new playIndividual(this);
+		
+		pi.setLocationRelativeTo(null);
+		pi.setVisible(true);
+		
 	}
 }

@@ -15,6 +15,17 @@ public class Controller {
 	public void setT(Test t) {
 		Controller.t = t;
 	}
+	
+	private static Test t1=new Test();
+	
+
+	public static Test getT1() {
+		return t1;
+	}
+
+	public static void setT1(Test t1) {
+		Controller.t1 = t1;
+	}
 
 	/**
 	 * Launch the application.

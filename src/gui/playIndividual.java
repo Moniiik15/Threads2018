@@ -55,8 +55,8 @@ public class playIndividual extends JFrame {
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.WEST);
 
-		Controller.getT().initializeSingingInThreads();
-		Controller.getT().startNewWindow();
+		Controller.getT1().initializeSingingInThreads();
+		Controller.getT1().startNewWindow();
 	}
 
 	private JScrollPane getScrollPane() {
@@ -96,7 +96,7 @@ public class playIndividual extends JFrame {
 			btnStartPatti = new JButton("Start Patti");
 			btnStartPatti.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Controller.getT().startPatti();
+					Controller.getT1().startPatti();
 					btnStartPatti.setEnabled(false);
 				}
 			});
@@ -110,7 +110,7 @@ public class playIndividual extends JFrame {
 			btnStartBruce = new JButton("Start Bruce");
 			btnStartBruce.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Controller.getT().startBruce();
+					Controller.getT1().startBruce();
 					btnStartBruce.setEnabled(false);
 				}
 			});
@@ -124,7 +124,7 @@ public class playIndividual extends JFrame {
 			btnStartChoir = new JButton("Start Choir");
 			btnStartChoir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Controller.getT().startChoir();
+					Controller.getT1().startChoir();
 					btnStartChoir.setEnabled(false);
 				}
 			});
@@ -138,7 +138,7 @@ public class playIndividual extends JFrame {
 			btnStopPatti = new JButton("Stop Patti");
 			btnStopPatti.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Controller.getT().stopPatti();
+					Controller.getT1().stopPatti();
 
 				}
 			});
@@ -152,7 +152,7 @@ public class playIndividual extends JFrame {
 			btnStopBruce = new JButton("Stop Bruce");
 			btnStopBruce.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Controller.getT().stopBruce();
+					Controller.getT1().stopBruce();
 
 				}
 			});
@@ -166,7 +166,7 @@ public class playIndividual extends JFrame {
 			btnStopChoir = new JButton("Stop Choir");
 			btnStopChoir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Controller.getT().stopChoir();
+					Controller.getT1().stopChoir();
 
 				}
 			});
@@ -198,12 +198,12 @@ public class playIndividual extends JFrame {
 			btnRefresh = new JButton("");
 			btnRefresh.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Controller.getT().stopPatti();
-					Controller.getT().stopBruce();
-					Controller.getT().stopChoir();
+					Controller.getT1().stopPatti();
+					Controller.getT1().stopBruce();
+					Controller.getT1().stopChoir();
 
-					Controller.getT().initializeSingingInThreads();
-					Controller.getT().startNewWindow();
+					Controller.getT1().initializeSingingInThreads();
+					Controller.getT1().startNewWindow();
 					btnStartPatti.setEnabled(true);
 					btnStartBruce.setEnabled(true);
 					btnStartChoir.setEnabled(true);

@@ -19,6 +19,8 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class playIndividual extends JFrame {
 
@@ -42,9 +44,10 @@ public class playIndividual extends JFrame {
 	 * Create the frame.
 	 */
 	public playIndividual(MainWindow mw) {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(playIndividual.class.getResource("/image/nota.jpg")));
 		setTitle("Play individual");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 526, 428);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,6 +95,7 @@ public class playIndividual extends JFrame {
 			btnStartPatti.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					t.startPatti();
+					btnStartPatti.setEnabled(false);
 				}
 			});
 			btnStartPatti.setBounds(15, 16, 115, 29);
@@ -104,6 +108,7 @@ public class playIndividual extends JFrame {
 			btnStartBruce.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					t.startBruce();
+					btnStartBruce.setEnabled(false);
 				}
 			});
 			btnStartBruce.setBounds(15, 54, 115, 29);
@@ -116,6 +121,7 @@ public class playIndividual extends JFrame {
 			btnStartChoir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					t.startChoir();
+					btnStartChoir.setEnabled(false);
 				}
 			});
 			btnStartChoir.setBounds(15, 92, 115, 29);
@@ -128,7 +134,7 @@ public class playIndividual extends JFrame {
 			btnStopPatti.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					t.stopPatti();
-					btnStartPatti.setEnabled(false);
+					
 					
 				}
 			});
@@ -142,7 +148,7 @@ public class playIndividual extends JFrame {
 			btnStopBruce.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					t.stopBruce();
-					btnStartBruce.setEnabled(false);
+					
 				}
 			});
 			btnStopBruce.setBounds(15, 204, 115, 29);
@@ -155,7 +161,7 @@ public class playIndividual extends JFrame {
 			btnStopChoir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					t.stopChoir();
-					btnStartChoir.setEnabled(false);
+					
 				}
 			});
 			btnStopChoir.setBounds(15, 239, 115, 29);
@@ -184,7 +190,15 @@ public class playIndividual extends JFrame {
 			btnRefresh = new JButton("");
 			btnRefresh.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					t.stopPatti();
+					t.stopBruce();
+					t.stopChoir();
 					
+					t.initializeSingingInThreads();
+					t.startNewWindow();
+					btnStartPatti.setEnabled(true);
+					btnStartBruce.setEnabled(true);
+					btnStartChoir.setEnabled(true);
 				}
 			});
 			btnRefresh.setBounds(117, 307, 57, 39);

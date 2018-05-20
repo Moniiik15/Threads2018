@@ -29,7 +29,7 @@ public class Test {
         String lyrics3= "Because the night belongs to lust";
         boolean stopIt = false;
         
-        synch = new Synchronizer(true,false, null,false, false, false, false);
+        synch = new Synchronizer(true,false,false, null,false, false, false, false);
         
         Performance firstVoicePerformance = new Performance(lyrics1, 1500);
         Performance secondVoicePerformance = new Performance(lyrics2, 1500);
@@ -79,6 +79,7 @@ public class Test {
 	
 	public void startBruce() {
 		synch.setFirstVoiceFlag(false);
+		synch.setChoirFlag(false);
 		synch.setSecondVoiceFlag(true);
 		synch.setBruce(true);
 		bruceSpringsteen.start();
@@ -94,17 +95,13 @@ public class Test {
 	public void startChoir() {
 		synch.setFirstVoiceFlag(false);
 		synch.setSecondVoiceFlag(false);
+		synch.setChoirFlag(true);
 		synch.setChoir(true);
 		choir.start();
 		
 	}
 	public void stopChoir() {
-		
-			synch.setFirstVoiceFlag(true);
-		
-		//if(synch.isBruce()) {
-		//	synch.setSecondVoiceFlag(true);
-		
+		synch.setChoir(false);
 		choir.setStopIt(true);
 		
 	}

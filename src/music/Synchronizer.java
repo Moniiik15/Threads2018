@@ -12,6 +12,7 @@ public class Synchronizer {
     
     private boolean firstVoiceFlag;
     private boolean secondVoiceFlag;
+    private boolean choirFlag;
     private JTextArea textArea;
     
     private boolean Patti;
@@ -19,10 +20,11 @@ public class Synchronizer {
     private boolean choir;
     
     private boolean openIndividual;
-    public Synchronizer(boolean firstVoiceFlag,boolean secondVoiceFlag, JTextArea textArea, boolean Patti, boolean Bruce,boolean choir, boolean openIndividual) {
+    public Synchronizer(boolean firstVoiceFlag,boolean secondVoiceFlag,boolean choirFlag ,JTextArea textArea, boolean Patti, boolean Bruce,boolean choir, boolean openIndividual) {
         super();
         this.firstVoiceFlag = firstVoiceFlag;
         this.secondVoiceFlag = secondVoiceFlag;
+        this.choirFlag= choirFlag;
         this.textArea=textArea;
         this.Patti=Patti;
         this.Bruce=Bruce;
@@ -54,7 +56,7 @@ public class Synchronizer {
     }
     
     public synchronized void singChoir(String lyrics, int delay) {
-    	while(firstVoiceFlag || secondVoiceFlag) {
+    	while(!choirFlag) {
     		try {
 				wait();
 			} catch (InterruptedException e) {
@@ -89,6 +91,7 @@ public class Synchronizer {
     		   }
     		   else if(!Bruce && choir) {
     			   firstVoiceFlag=!firstVoiceFlag;
+    			   choirFlag=!choirFlag;
     		   }
     		   
     	   }
@@ -100,17 +103,21 @@ public class Synchronizer {
     		   }
     		   else if(choir) {
     			   secondVoiceFlag=!secondVoiceFlag;
+    			   choirFlag=!choirFlag;
     			   
     		   }
     		  
     		   
     	   }
-    	   else {
+    	   else if(choirFlag) {
+    		  
     		   if(Patti) {
+    			   choirFlag=!choirFlag;
     			   firstVoiceFlag=!firstVoiceFlag;
     			   
     		   }
     		   else if(!Patti && Bruce) {
+    			   choirFlag=!choirFlag;
     			   secondVoiceFlag=!secondVoiceFlag;
     		   }
     		   
@@ -127,15 +134,25 @@ public class Synchronizer {
         }
         else if(secondVoiceFlag) {
         	secondVoiceFlag=!secondVoiceFlag;
+        	choirFlag=!choirFlag;
         	
         }
         else {
+        	choirFlag=!choirFlag;
         	firstVoiceFlag=!firstVoiceFlag;	
         }
         
        }
         notifyAll();
     }
+
+	public boolean isChoirFlag() {
+		return choirFlag;
+	}
+
+	public void setChoirFlag(boolean choirFlag) {
+		this.choirFlag = choirFlag;
+	}
 
 	public boolean isFirstVoiceFlag() {
 		return firstVoiceFlag;

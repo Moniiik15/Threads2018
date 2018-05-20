@@ -34,17 +34,16 @@ public class playIndividual extends JFrame {
 	private JButton btnStopPatti;
 	private JButton btnStopBruce;
 	private JButton btnStopChoir;
-	
-	
-	Test t=new Test();
+
+	// Test t=new Test();
 	private JButton btnClear;
 	private JButton btnRefresh;
-	
+
 	/**
 	 * Create the frame.
 	 */
 	public playIndividual(MainWindow mw) {
-		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(playIndividual.class.getResource("/image/nota.jpg")));
 		setTitle("Play individual");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -55,9 +54,9 @@ public class playIndividual extends JFrame {
 		setContentPane(contentPane);
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.WEST);
-		
-		t.initializeSingingInThreads();
-		t.startNewWindow();
+
+		Controller.getT().initializeSingingInThreads();
+		Controller.getT().startNewWindow();
 	}
 
 	private JScrollPane getScrollPane() {
@@ -67,12 +66,14 @@ public class playIndividual extends JFrame {
 		}
 		return scrollPane;
 	}
+
 	public static JTextArea getTextArea() {
 		if (textArea == null) {
 			textArea = new JTextArea();
 		}
 		return textArea;
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -89,12 +90,13 @@ public class playIndividual extends JFrame {
 		}
 		return panel;
 	}
+
 	private JButton getBtnStartPatti() {
 		if (btnStartPatti == null) {
 			btnStartPatti = new JButton("Start Patti");
 			btnStartPatti.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					t.startPatti();
+					Controller.getT().startPatti();
 					btnStartPatti.setEnabled(false);
 				}
 			});
@@ -102,12 +104,13 @@ public class playIndividual extends JFrame {
 		}
 		return btnStartPatti;
 	}
+
 	private JButton getBtnStartBruce() {
 		if (btnStartBruce == null) {
 			btnStartBruce = new JButton("Start Bruce");
 			btnStartBruce.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					t.startBruce();
+					Controller.getT().startBruce();
 					btnStartBruce.setEnabled(false);
 				}
 			});
@@ -115,12 +118,13 @@ public class playIndividual extends JFrame {
 		}
 		return btnStartBruce;
 	}
+
 	private JButton getBtnStartChoir() {
 		if (btnStartChoir == null) {
 			btnStartChoir = new JButton("Start Choir");
 			btnStartChoir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					t.startChoir();
+					Controller.getT().startChoir();
 					btnStartChoir.setEnabled(false);
 				}
 			});
@@ -128,46 +132,49 @@ public class playIndividual extends JFrame {
 		}
 		return btnStartChoir;
 	}
+
 	private JButton getBtnStopPatti() {
 		if (btnStopPatti == null) {
 			btnStopPatti = new JButton("Stop Patti");
 			btnStopPatti.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					t.stopPatti();
-					
-					
+					Controller.getT().stopPatti();
+
 				}
 			});
 			btnStopPatti.setBounds(15, 169, 115, 29);
 		}
 		return btnStopPatti;
 	}
+
 	private JButton getBtnStopBruce() {
 		if (btnStopBruce == null) {
 			btnStopBruce = new JButton("Stop Bruce");
 			btnStopBruce.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					t.stopBruce();
-					
+					Controller.getT().stopBruce();
+
 				}
 			});
 			btnStopBruce.setBounds(15, 204, 115, 29);
 		}
 		return btnStopBruce;
 	}
+
 	private JButton getBtnStopChoir() {
 		if (btnStopChoir == null) {
 			btnStopChoir = new JButton("Stop Choir");
 			btnStopChoir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					t.stopChoir();
-					
+					Controller.getT().stopChoir();
+
 				}
 			});
 			btnStopChoir.setBounds(15, 239, 115, 29);
 		}
 		return btnStopChoir;
 	}
+
 	private JButton getBtnClear() {
 		if (btnClear == null) {
 			btnClear = new JButton("");
@@ -178,24 +185,25 @@ public class playIndividual extends JFrame {
 			});
 			btnClear.setBounds(15, 307, 63, 39);
 			ImageIcon icon = new ImageIcon(MainWindow.class.getResource("/image/clear.png"));
-			Image img = icon.getImage() ;  
-			Image newimg = img.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
-			icon = new ImageIcon( newimg );
+			Image img = icon.getImage();
+			Image newimg = img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+			icon = new ImageIcon(newimg);
 			btnClear.setIcon(icon);
 		}
 		return btnClear;
 	}
+
 	private JButton getBtnRefresh() {
 		if (btnRefresh == null) {
 			btnRefresh = new JButton("");
 			btnRefresh.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					t.stopPatti();
-					t.stopBruce();
-					t.stopChoir();
-					
-					t.initializeSingingInThreads();
-					t.startNewWindow();
+					Controller.getT().stopPatti();
+					Controller.getT().stopBruce();
+					Controller.getT().stopChoir();
+
+					Controller.getT().initializeSingingInThreads();
+					Controller.getT().startNewWindow();
 					btnStartPatti.setEnabled(true);
 					btnStartBruce.setEnabled(true);
 					btnStartChoir.setEnabled(true);
@@ -203,9 +211,9 @@ public class playIndividual extends JFrame {
 			});
 			btnRefresh.setBounds(117, 307, 57, 39);
 			ImageIcon icon = new ImageIcon(MainWindow.class.getResource("/image/refresh.jpg"));
-			Image img = icon.getImage() ;  
-			Image newimg = img.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
-			icon = new ImageIcon( newimg );
+			Image img = icon.getImage();
+			Image newimg = img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+			icon = new ImageIcon(newimg);
 			btnRefresh.setIcon(icon);
 		}
 		return btnRefresh;

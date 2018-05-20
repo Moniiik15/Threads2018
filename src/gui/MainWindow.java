@@ -31,23 +31,6 @@ public class MainWindow extends JFrame {
 	private JButton btnStop;
 	private JButton btnClear;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow frame = new MainWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -64,11 +47,7 @@ public class MainWindow extends JFrame {
 		contentPane.add(getPanel(), BorderLayout.WEST);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
 	}
-	
-	
-	Test t=new Test();
-	
-	
+
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -76,13 +55,14 @@ public class MainWindow extends JFrame {
 		}
 		return scrollPane;
 	}
-	
+
 	public static JTextArea getTextArea() {
 		if (textArea == null) {
 			textArea = new JTextArea();
 		}
 		return textArea;
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -91,10 +71,11 @@ public class MainWindow extends JFrame {
 			panel.add(getBtnStart());
 			panel.add(getBtnStop());
 			panel.add(getBtnClear());
-			
+
 		}
 		return panel;
 	}
+
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
@@ -103,61 +84,62 @@ public class MainWindow extends JFrame {
 		}
 		return panel_1;
 	}
+
 	private JButton getBtnStartIndividual() {
 		if (btnStartIndividual == null) {
 			btnStartIndividual = new JButton("Start individual threads");
 			btnStartIndividual.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					showIndividual();
-				
+
 				}
 
-				
 			});
 		}
 		return btnStartIndividual;
 	}
-	
+
 	private JButton getBtnStart() {
 		if (btnStart == null) {
 			btnStart = new JButton("");
 			btnStart.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					t.initializeSingingInThreads();
-					t.startThreads();
+					Controller.getT().initializeSingingInThreads();
+					Controller.getT().startThreads();
+
 				}
 			});
 			btnStart.setBounds(18, 5, 63, 39);
-			
+
 			ImageIcon icon = new ImageIcon(MainWindow.class.getResource("/image/play.png"));
-			Image img = icon.getImage() ;  
-			Image newimg = img.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
-			icon = new ImageIcon( newimg );
+			Image img = icon.getImage();
+			Image newimg = img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+			icon = new ImageIcon(newimg);
 			btnStart.setIcon(icon);
-			
+
 		}
 		return btnStart;
 	}
-	
-	
+
 	private JButton getBtnStop() {
 		if (btnStop == null) {
 			btnStop = new JButton("");
 			btnStop.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					t.stopThreads();
+					Controller.getT().stopThreads();
 				}
 			});
 			btnStop.setBounds(18, 60, 63, 39);
 			ImageIcon icon = new ImageIcon(MainWindow.class.getResource("/image/stop.png"));
-			Image img = icon.getImage() ;  
-			Image newimg = img.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
-			icon = new ImageIcon( newimg );
+			Image img = icon.getImage();
+			Image newimg = img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+			icon = new ImageIcon(newimg);
 			btnStop.setIcon(icon);
-			
+
 		}
 		return btnStop;
 	}
+
 	private JButton getBtnClear() {
 		if (btnClear == null) {
 			btnClear = new JButton("");
@@ -168,21 +150,20 @@ public class MainWindow extends JFrame {
 			});
 			btnClear.setBounds(18, 139, 63, 39);
 			ImageIcon icon = new ImageIcon(MainWindow.class.getResource("/image/clear.png"));
-			Image img = icon.getImage() ;  
-			Image newimg = img.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
-			icon = new ImageIcon( newimg );
+			Image img = icon.getImage();
+			Image newimg = img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+			icon = new ImageIcon(newimg);
 			btnClear.setIcon(icon);
-		
+
 		}
 		return btnClear;
 	}
-	
-	
+
 	private void showIndividual() {
-		playIndividual pi=new playIndividual(this);
-		
+		playIndividual pi = new playIndividual(this);
+
 		pi.setLocationRelativeTo(null);
 		pi.setVisible(true);
-		
+
 	}
 }
